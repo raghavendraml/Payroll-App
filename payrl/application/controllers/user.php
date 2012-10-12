@@ -11,10 +11,12 @@ class User extends CI_Controller
 	
 	public function index()
 	{
-		if(!$this->session->userdata('logged_in')){
+		if(!$this->session->userdata('logged_in'))
+		{
 			$this->layout->view('user/login_page');
 		}
-		else{
+		else
+		{
 			redirect('user/data_fetch');
 		}
 	}
@@ -27,16 +29,19 @@ class User extends CI_Controller
 		if($this->form_validation->run('signup') == FALSE){
 			$this->layout->view('user/login_page');
 		}
-		else{
+		else
+		{
 			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 			$id = $this->user_model->check_login($username ,$password);
-			if(!$id){				
+			if(!$id)
+			{				
 				$this->session->set_flashdata('login_error',TRUE);
 				redirect('user/login');
 			}
-			else{
-				$this->load->library('session');
+			else
+			{
+				//$this->load->library('session');
 				$this->session->set_userdata(array('logged_in'=>'qwerty'));				
 				redirect('user/valid_login'); 							
 			}				
@@ -47,10 +52,24 @@ class User extends CI_Controller
 
 	public function valid_login()
 	{
-		if($this->session->userdata('logged_in')){	
-			redirect('user/data_fetch');
+		if($this->session->userdata('logged_in'))
+		{	
+			
+			if($this->session->userdata('last_visit'))
+			{
+				$url = $this->session->userdata('last_visit');
+				//log_message('error',"CHK LAST VISIT: ".$url);
+				redirect($url);
+				
+			}
+			else
+			{
+				redirect('user/data_fetch');
+			}
 		}
-		else{
+
+		else
+		{
 			redirect('user/index');
 		}
 	}
@@ -59,10 +78,12 @@ class User extends CI_Controller
 
 	public function data_fetch()
 	{	
+		
 		if(!$this->session->userdata('logged_in')){
 			redirect('user/index');
 		}
 		else{ 		
+			//$this->output->cache(3);
 			$data['query'] = $this->user_model->retrieve();
 			$this->layout->view('user/display_view',$data);	
 		}
@@ -114,9 +135,9 @@ class User extends CI_Controller
 
 	public function logout()
 	{
-		$this->session->unset_userdata('logged_in');
+		$this->session->unset_userdata(array('logged_in','last_visit'));
 		$this->session->sess_destroy();
-		redirect('user/login');
-	}
+		$this->layout->view('user/login_page');
 
+	}
 }

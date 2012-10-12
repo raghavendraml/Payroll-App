@@ -13,7 +13,7 @@
             </div>
               <div class="nav pull-right">
                  <ul class="nav">
-                  <li><a href="logout"><img src="<?= base_url('assets/img/Logout.png') ?>"/><span> </span>Logout</a></li>
+                  <li><a href="<?= site_url(array('user','logout'));?>" ><img src="<?= base_url('assets/img/Logout.png') ?>"/><span> </span>Logout</a></li>
                  </ul>
               </div>
           </div> 

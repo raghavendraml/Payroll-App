@@ -271,7 +271,7 @@ $config['encryption_key'] = 'payroll123';
 // $config['sess_time_to_update']	= 300;
 
 $config['sess_cookie_name']		= 'payrl_session';
-$config['sess_expiration']		= 1000;
+$config['sess_expiration']		= 30;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= TRUE;
 $config['sess_use_database']	= FALSE;

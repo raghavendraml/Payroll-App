@@ -7,7 +7,7 @@ class Registration extends CI_controller
 	public function index()
 	{
 		if(!$this->session->userdata('logged_in')){
-			redirect('user/index');
+			$this->layout->view('user/login_page');
 		}
 		else{
 			 $this->layout->view('registration/registration');
@@ -18,8 +18,9 @@ class Registration extends CI_controller
 
 	public function add_employee()
 	{
-		if(!$this->session->userdata('logged_in')){
-			redirect('user/index');
+		if(!$this->session->userdata('logged_in'))
+		{
+			$this->layout->view('user/login_page');
 		}
 		else
 		{
@@ -53,7 +54,7 @@ class Registration extends CI_controller
 	public function display()
 	{
 		if(!$this->session->userdata('logged_in')){
-			redirect('user/index');
+			$this->layout->view('user/login_page');
 		}
 		else{
 			if($this->session->userdata('inserted')){					
@@ -80,7 +81,7 @@ class Registration extends CI_controller
 		// Fetching data from database table
 
 		if(!$this->session->userdata('logged_in')){
-			redirect('user/index');
+			$this->layout->view('user/login_page');
 		}
 		else{ 	
 			$data['query'] = $this->registration_model->fetch_value();					
@@ -90,8 +91,9 @@ class Registration extends CI_controller
 
 	public function create_employer()
 	{
-		if(!$this->session->userdata('logged_in')){
-			redirect('user/index');
+		if(!$this->session->userdata('logged_in'))
+		{
+			$this->layout->view('user/login_page');
 		}
 		else
 		{
