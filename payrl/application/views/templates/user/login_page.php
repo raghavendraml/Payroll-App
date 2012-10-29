@@ -4,7 +4,15 @@
 <div class="container"> 
       <div class="row">    
          <div style ="margin-bottom:20px;">        
-           <img src="<?= base_url('assets/img/payrollSystem80FeatBanner.000.png') ?>">
+            <img src="<?= base_url('assets/img/payrollSystem80FeatBanner.000.png') ?>"> 
+         <!--  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,0,0" width="728" height="90">
+			<param name="movie" value="flashvortex.swf" />
+			<param name="quality" value="best" />
+			<param name="menu" value="true" />
+			<param name="allowScriptAccess" value="sameDomain" />
+			<embed src= '<?=base_url("assets/img/flashvortex.swf")?>' quality="best" menu="true" width="728" height="90" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" allowScriptAccess="sameDomain" />
+			</object>  -->
+
 		</div>
       </div>
    </div> 

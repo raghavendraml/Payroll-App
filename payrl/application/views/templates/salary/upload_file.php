@@ -13,15 +13,15 @@
       <form class="form-horizontal" action="upload_view" method="post">
         <div class="fileupload fileupload-new" data-provides="fileupload">
           <div class="input-append">
-            <label class="span1" style="float:left;color:#537CA6;">File :</label>
-              <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div><span class="btn btn-file"><span class="fileupload-new">Select file</span><span class="fileupload-exists">Change</span><input type="file" /></span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
+            <label class="span1" style="float:left;color:#537CA6;">File : </label>
+              <div class="uneditable-input span3"><i class="icon-file fileupload-exists"></i> <span class="fileupload-preview"></span></div><span class="btn btn-file"><span class="fileupload-new">Click to Select File</span><span class="fileupload-exists">Change</span><input type="file" /></span><a href="#" class="btn fileupload-exists" data-dismiss="fileupload">Remove</a>
           </div>
         </div> 
 
         <div class="control-group">
           <div class="controls">             
-            <input class="btn" type="Submit" value ="Save"/>
-            <input class="btn" type="reset" value ="Reset" />             
+            <input class="btn" type="Submit" value ="Upload"/>
+            
           </div>
         </div>            
       </form>      

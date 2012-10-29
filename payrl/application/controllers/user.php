@@ -11,12 +11,15 @@ class User extends CI_Controller
 	
 	public function index()
 	{
-		if(!$this->session->userdata('logged_in'))
+		
+		if(!$this->set_data->is_logged_in())
 		{
+			
 			$this->layout->view('user/login_page');
 		}
 		else
 		{
+			
 			redirect('user/data_fetch');
 		}
 	}
@@ -24,7 +27,8 @@ class User extends CI_Controller
 	// Login with valid credential held here.
 	public function login()
 	{	
-		$this->form_validation->set_error_delimiters('<div class="error" style="color:red;margin-left:12px;font-size:13px;">', '</div>');
+
+		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
 
 		if($this->form_validation->run('signup') == FALSE){
 			$this->layout->view('user/login_page');
@@ -52,7 +56,7 @@ class User extends CI_Controller
 
 	public function valid_login()
 	{
-		if($this->session->userdata('logged_in'))
+		if($this->set_data->is_logged_in())
 		{	
 			
 			if($this->session->userdata('last_visit'))
@@ -79,26 +83,72 @@ class User extends CI_Controller
 	public function data_fetch()
 	{	
 		
-		if(!$this->session->userdata('logged_in')){
+		if(!$this->set_data->is_logged_in()){
 			redirect('user/index');
 		}
 		else{ 		
-			//$this->output->cache(3);
-			$data['query'] = $this->user_model->retrieve();
+			
+			
+			/* Auto load pagination library */
+			/* Set the pagination configs */
+      		$config['base_url'] = '/user/data_fetch';
+      		$config['total_rows'] = $this->db->get('UserDetails')->num_rows();
+      		$config['per_page'] = '10'; 
+      		$this->pagination->initialize($config); 
+
+			$data['query'] = $this->user_model->retrieve(null,$config['per_page']);
 			$this->layout->view('user/display_view',$data);	
+			
 		}
 	}
 	
-	public function update()
+	public function get_emp_details()
 	{
-		if(!$this->session->userdata('logged_in')){
+		if(!$this->session->userdata('logged_in'))
+		{
 			redirect('user/index');
 		}
-		else{	
-			redirect('user/data_fetch');
-		}
+		else
+		{	
+			
+			if ($this->input->post('empid'))
+			{
+				
+				$empler_id = $this->input->post('empid');
+				$this->session->set_userdata('empid',$empler_id);	
+				$emp_data['update_emp'] = $this->user_model->retrieve($empler_id);
+				$viw = $this->load->view('templates/registration/registration',$emp_data,TRUE);
+			 	echo $viw; 
+			}
+			else
+			{
+			  	$update_data = array('name'=>$this->input->post('fullname'),
+							  'user_name'=>$this->input->post('username'),
+							  'designation'=>$this->input->post('designation'),
+							  'dept'=>$this->input->post('department')
+							  );
+			 	//echo $this->input->post('fullname');
+			 	$eid = $this->session->userdata('empid');
+			 	
+			 	$update_res = $this->user_model->update_emp_details($update_data,$eid);
+			 	if ($update_res == 1)
+			 	{
+			 		$this->session->set_flashdata('emp_upd',$eid);
+			 		echo 1 ;
+			 	}
+			 	else
+			 	{
+			 		echo "Error Occured" ;
+			 	}
+			 	
+
+			  
+		 	}
+
+		}/* Parent else close */
 	}
 
+	
 	public function search_employee()
 	{
 		if(!$this->session->userdata('logged_in')){
@@ -135,7 +185,7 @@ class User extends CI_Controller
 
 	public function logout()
 	{
-		$this->session->unset_userdata(array('logged_in','last_visit'));
+		$this->session->unset_userdata(array('logged_in'=>'','last_visit'=>''));
 		$this->session->sess_destroy();
 		$this->layout->view('user/login_page');
 

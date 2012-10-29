@@ -47,7 +47,7 @@ $config = array(
 				)
 			),
 
-		'employer' => array(
+		'employee' => array(
 			array(
 				'field' => 'emp_code',
 				'label' => 'Emp code',
@@ -139,5 +139,5 @@ $config = array(
 				)
 			)
 );
-
+//error_log(print_r($config['calculation']));
 ?>

@@ -24,18 +24,41 @@ class User_model extends CI_Model
 	public function save($data)
 	{
 		$this->db->insert('UserDetails',$data);
-		if($this->db->affected_rows()>0){
+		if($this->db->affected_rows() > 0){
 			return true;
 		}
-		else{
+		else
+		{
 			return false;
 		}
 	}
 	
-	public function retrieve()
+	public function retrieve($id=null,$per_page=null)
 	{
 		$this->db->select('*');
-		$query = $this->db->get('UserDetails');		
+		if ($id != null)
+		{
+			$this->db->where('slno',$id);
+			//$query = $this->db->get('UserDetails');
+		}
+
+		elseif($per_page != null)
+		{
+			$pg_no = $this->uri->rsegment(3);
+		
+			if ($pg_no == null)
+			{
+				$pg_no = 0;	
+			}
+		/* Show 5 records strating from 0 . Syntax :- db->get('table',num_of_rec,start_point)*/	
+			$query = $this->db->get('UserDetails',$per_page,$pg_no);		
+		}
+
+		elseif($per_page == null)
+		{
+			$query = $this->db->get('UserDetails');
+		}
+		
 		return $query->result();		
 	}	
 
@@ -44,6 +67,21 @@ class User_model extends CI_Model
 		$this->db->where($slno,$this->slno);
 		$this->db->update('data',$data);
 	}
+	/* Employee/Employer details Update */
+	public function update_emp_details($data,$id)
+	{
+		$this->db->where('slno',$id);
+		$this->db->update('UserDetails',$data);
+		if ($this->db->affected_rows() > 0)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
 
 }
 

@@ -44,7 +44,12 @@ margin-left: 12px;
 #password{
 margin-left: 12px;	
 }
-
+.error
+{
+  color:red;
+  /*margin-left:12px;*/
+  font-size:13px;
+}
 
 
 

@@ -6,7 +6,7 @@ class Registration extends CI_controller
 
 	public function index()
 	{
-		if(!$this->session->userdata('logged_in')){
+		if(!$this->set_data->is_logged_in()){
 			$this->layout->view('user/login_page');
 		}
 		else{
@@ -18,15 +18,18 @@ class Registration extends CI_controller
 
 	public function add_employee()
 	{
-		if(!$this->session->userdata('logged_in'))
+		if(!$this->set_data->is_logged_in())
 		{
 			$this->layout->view('user/login_page');
 		}
 		else
 		{
+			
+			
 			$this->form_validation->set_error_delimiters('<div class="error" style="color:red;font-size:13px;">', '</div>');
 			
 			if($this->form_validation->run('register') == FALSE){
+				
 				$this->layout->view('registration/registration');
 			}
 			else
@@ -53,7 +56,7 @@ class Registration extends CI_controller
 	}
 	public function display()
 	{
-		if(!$this->session->userdata('logged_in')){
+		if(!$this->set_data->is_logged_in()){
 			$this->layout->view('user/login_page');
 		}
 		else{
@@ -91,7 +94,7 @@ class Registration extends CI_controller
 
 	public function create_employer()
 	{
-		if(!$this->session->userdata('logged_in'))
+		if(!$this->set_data->is_logged_in())
 		{
 			$this->layout->view('user/login_page');
 		}
@@ -100,6 +103,7 @@ class Registration extends CI_controller
 			$this->form_validation->set_error_delimiters('<div class="error" style="color:red;width:240px;font-size:13px;">', '</div>');
 		
 			if($this->form_validation->run('employer') == FALSE){
+				
 				$this->layout->view('registration/create_employer');
 			}
 			else
