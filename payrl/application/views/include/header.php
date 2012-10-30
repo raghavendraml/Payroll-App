@@ -38,6 +38,8 @@
    <script src="<?= base_url('assets/js/jasny-bootstrap.min.js') ?>"></script>
    <script src="<?= base_url('assets/js/bootstrap-datepicker.js') ?>"></script>
    <script src="<?= base_url('assets/js/bootstrap-affix.js') ?>"></script>
+   <script src="<?= base_url('assets/js/bootstrap-tooltip.js') ?>"></script>
+   <script src="<?= base_url('assets/js/bootstrap-popover.js') ?>"></script>
    
 </head>
 <body>

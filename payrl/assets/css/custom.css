@@ -51,7 +51,17 @@ margin-left: 12px;
   font-size:13px;
 }
 
+/* For the popover in upload file */
+/* Start */
+.popover.fade.right.in
+{
+  width:350px;
+  color: #537CA6;
+}
+.popover-title
+{
+  height: 10px;
+}
 
-
-
+/* End */
 
