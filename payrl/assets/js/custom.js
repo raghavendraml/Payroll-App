@@ -11,6 +11,7 @@ $('#myTab a').click(function (e) {
 $(function(){
     
     /* To highlight current page in navigation bar */
+
     var url = window.location;
     url = url.toString();  
     var frag = url.split("/");    
@@ -32,9 +33,10 @@ $(function(){
     	 });
 
     });
-    //$("#info-sign").click(function(){
 
-        $("#info-sign").popover('toggle');
+    //$("#info-sign").hover(function(){
+    
+         $('#info-sign').popover('toggle');
 
     //});
     
