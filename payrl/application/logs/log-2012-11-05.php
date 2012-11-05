@@ -312,3 +312,5 @@ ERROR - 2012-11-05 18:09:56 --> 404 Page Not Found --> favicon.ico
 ERROR - 2012-11-05 18:10:22 --> 404 Page Not Found --> favicon.ico
 ERROR - 2012-11-05 18:10:41 --> 404 Page Not Found --> favicon.ico
 ERROR - 2012-11-05 18:10:43 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-11-05 18:11:42 --> 404 Page Not Found --> favicon.ico
+ERROR - 2012-11-05 18:11:51 --> 404 Page Not Found --> favicon.ico
