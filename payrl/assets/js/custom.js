@@ -34,11 +34,11 @@ $(function(){
 
     });
 
-    //$("#info-sign").hover(function(){
+    $("#info-sign").hover(function(){
     
-         $('#info-sign').popover('toggle');
+         $('#info-sign').popover('show');
 
-    //});
+    });
     
 
 
@@ -96,7 +96,7 @@ $('#sess_val').val('');
 
 //  $('#datepicker').datepicker(); 
 
-// $('.fileupload').fileupload();
+ // $('.fileupload').fileupload();
 
 
 

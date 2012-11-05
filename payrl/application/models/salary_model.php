@@ -6,6 +6,7 @@ class Salary_model extends CI_Model
 	{
 		$this->db->select('*');
 		$query = $this->db->get('UserDetails');		
+		//$query = $this->db->get('UserDetails');		
 		return $query->result();		
 	}
 	
